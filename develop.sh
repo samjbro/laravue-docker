@@ -7,6 +7,12 @@ COMPOSE_FILE="dev"
 COMPOSE="docker-compose -f docker-compose.${COMPOSE_FILE}.yml"
 
 if [ $# -gt 0 ]; then
+    if [ "$1" == "art" ]; then
+        shift 1
+        $COMPOSE run --rm \
+            -w /var/www/html \
+            app \
+            php artisan "$@"
     if [ "$1" == "composer" ]; then
         shift 1
         $COMPOSE run --rm \
