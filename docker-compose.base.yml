@@ -1,0 +1,20 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: laravue-frontend/app
+    volumes:
+      - .:/var/www/html
+    networks:
+      - lnet
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    image: laravue-frontend/node
+    volumes:
+      - .:/var/www/html
+    networks:
+      - lnet
