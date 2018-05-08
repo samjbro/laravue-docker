@@ -13,7 +13,7 @@ if [ $# -gt 0 ]; then
             -w /var/www/html \
             app \
             php artisan "$@"
-    if [ "$1" == "composer" ]; then
+    elif [ "$1" == "composer" ]; then
         shift 1
         $COMPOSE run --rm \
             -w /var/www/html \
