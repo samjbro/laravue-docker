@@ -13,6 +13,6 @@ node('master') {
     }
 
     stage('say-hello') {
-        sh "echo 'hello world!'"
+        sh "echo 'hello world!!'"
     }
 }
