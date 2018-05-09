@@ -2,6 +2,7 @@
 
 export APP_ENV=${APP_ENV:-local}
 export APP_PORT=${APP_PORT:-80}
+export API_PORT=${API_PORT:-3000}
 export DB_PORT=${DB_PORT:-3306}
 export DB_ROOT_PASS=${DB_ROOT_PASS:-secret}
 export DB_NAME=${DB_NAME:-helpspot}
@@ -14,11 +15,12 @@ COMPOSE_FILE="dev"
 TTY=""
 
 if [ ! -z "$BUILD_NUMBER" ]; then
-    COMPOSE_FILE="ci"
+#    COMPOSE_FILE="ci"
     TTY="-T"
 fi
 
-COMPOSE="docker-compose -f docker-compose.${COMPOSE_FILE}.yml"
+#COMPOSE="docker-compose -f docker-compose.${COMPOSE_FILE}.yml"
+COMPOSE="docker-compose"
 
 if [ $# -gt 0 ]; then
     if [ "$1" == "art" ]; then
@@ -50,6 +52,17 @@ if [ $# -gt 0 ]; then
         $COMPOSE exec \
         app \
         sh -c "cd /var/www/html && ./vendor/bin/phpunit $@"
+    elif [ "$1" == "e2e" ]; then
+        shift 1
+
+        if [ $# -gt 0 ]; then
+            $COMPOSE run --rm \
+            codeceptjs \
+            codeceptjs "$@"
+        else
+            $COMPOSE up -d
+            sh -c "./node_modules/.bin/codeceptjs run --debug"
+        fi
     else
         $COMPOSE "$@"
     fi

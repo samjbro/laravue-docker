@@ -1,0 +1,10 @@
+{
+  "tests": "./tests/e2e/**/*_test.js",
+  "timeout": 10000,
+  "output": "./tests/e2e/output",
+  "helpers": {},
+  "include": {},
+  "bootstrap": false,
+  "mocha": {},
+  "name": "tests"
+}
