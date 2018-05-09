@@ -18,6 +18,6 @@ node('master') {
     }
 
     stage('e2e') {
-        sh "APP_ENV=testing ./develop.sh e2e"
+        sh "APP_PORT=8080 APP_ENV=testing ./develop.sh e2e"
     }
 }
