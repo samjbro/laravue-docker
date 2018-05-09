@@ -60,6 +60,7 @@ if [ $# -gt 0 ]; then
             codeceptjs \
             codeceptjs "$@"
         else
+        sh -c "echo ${APP_PORT}"
             $COMPOSE up -d
             sh -c "./node_modules/.bin/codeceptjs run --debug"
         fi
