@@ -4,7 +4,7 @@ node('master') {
     stage('build') {
         git url: 'https://github.com/samjbro/laravue-docker.git'
 
-        sh "./develop.sh up -d"
+        sh "APP_PORT=8080 ./develop.sh up -d"
 
         sh "./develop.sh composer install"
         sh "./develop.sh yarn"
@@ -18,6 +18,6 @@ node('master') {
     }
 
     stage('e2e') {
-        sh "APP_PORT=8080 APP_ENV=testing ./develop.sh e2e"
+        sh "APP_ENV=testing ./develop.sh e2e"
     }
 }
