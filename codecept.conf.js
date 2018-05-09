@@ -4,7 +4,7 @@ exports.config = {
   "output": "./tests/e2e/output",
   "helpers": {
     "Nightmare": {
-      "url": "http://localhost:8080",
+      "url": "http://lnet:8080",
       "show": true
     }
   },

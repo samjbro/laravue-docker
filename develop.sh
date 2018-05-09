@@ -62,7 +62,10 @@ if [ $# -gt 0 ]; then
         else
         sh -c "echo ${APP_PORT}"
             $COMPOSE up -d
-            sh -c "./node_modules/.bin/codeceptjs run --debug"
+            $COMPOSE run --rm \
+                chrome \
+                sh -c "./node_modules/.bin/codeceptjs run --debug"
+            $COMPOSE down
         fi
     else
         $COMPOSE "$@"
