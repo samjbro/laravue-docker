@@ -12,7 +12,7 @@ node('master') {
         sh './develop.sh art key:generate'
     }
 
-    stage('say-hello') {
-        sh "echo 'hello world!!'"
+    stage('test') {
+        sh "APP_ENV=testing ./develop.sh test"
     }
 }
