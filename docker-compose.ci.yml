@@ -8,6 +8,10 @@ services:
     extends:
       file: docker-compose.base.yml
       service: node
+  e2e:
+    extends:
+      file: docker-compose.base.yml
+      service: e2e
 networks:
-  lnet:
+  laravue-net:
     driver: "bridge"

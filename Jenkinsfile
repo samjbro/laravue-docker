@@ -4,7 +4,7 @@ node('master') {
     stage('build') {
         git url: 'https://github.com/samjbro/laravue-docker.git'
 
-        sh "APP_PORT=8080 ./develop.sh up -d"
+        sh "./develop.sh up -d"
 
         sh "./develop.sh composer install"
         sh "./develop.sh yarn"

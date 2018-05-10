@@ -15,12 +15,11 @@ COMPOSE_FILE="dev"
 TTY=""
 
 if [ ! -z "$BUILD_NUMBER" ]; then
-#    COMPOSE_FILE="ci"
+    COMPOSE_FILE="ci"
     TTY="-T"
 fi
 
-#COMPOSE="docker-compose -f docker-compose.${COMPOSE_FILE}.yml"
-COMPOSE="docker-compose"
+COMPOSE="docker-compose -f docker-compose.${COMPOSE_FILE}.yml"
 
 if [ $# -gt 0 ]; then
     if [ "$1" == "art" ]; then

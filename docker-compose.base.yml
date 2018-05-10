@@ -1,0 +1,26 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: laravue-frontend/app
+    volumes:
+      - .:/var/www/html
+    networks:
+      - laravue-net
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    image: laravue-frontend/node
+    volumes:
+      - .:/var/www/html
+    networks:
+      - laravue-net
+  e2e:
+    image: geshan/codeceptjs
+    volumes:
+      - .:/tests
+    networks:
+      - laravue-net
