@@ -54,19 +54,11 @@ if [ $# -gt 0 ]; then
         sh -c "cd /var/www/html && ./vendor/bin/phpunit $@"
     elif [ "$1" == "e2e" ]; then
         shift 1
-
-        if [ $# -gt 0 ]; then
-            $COMPOSE run --rm \
-            codeceptjs \
-            codeceptjs "$@"
-        else
-        sh -c "echo ${APP_PORT}"
-            $COMPOSE up -d
-            $COMPOSE run --rm \
-                chrome \
-                sh -c "./node_modules/.bin/codeceptjs run --debug"
-            $COMPOSE down
-        fi
+        $COMPOSE up -d
+        $COMPOSE run --rm \
+        e2e \
+        sh -c "xvfb-run codeceptjs run --steps"
+        $COMPOSE down
     else
         $COMPOSE "$@"
     fi

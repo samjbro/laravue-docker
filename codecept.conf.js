@@ -4,7 +4,7 @@ exports.config = {
   "output": "./tests/e2e/output",
   "helpers": {
     "Nightmare": {
-      "url": "http://lnet:8080",
+      "url": "http://app",
       "show": true
     }
   },
@@ -12,4 +12,5 @@ exports.config = {
   "bootstrap": false,
   "mocha": {},
   "name": "html"
+
 };
