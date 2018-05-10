@@ -19,7 +19,10 @@ services:
     networks:
       - laravue-net
   e2e:
-    image: geshan/codeceptjs
+    build:
+      context: ./docker/e2e
+      dockerfile: Dockerfile
+    image: laravue-frontend/e2e
     volumes:
       - .:/tests
     networks:
